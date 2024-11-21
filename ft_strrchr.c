@@ -6,27 +6,24 @@
 /*   By: zwaschwi <zwaschwi@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:35:19 by zwaschwi          #+#    #+#             */
-/*   Updated: 2024/11/06 18:48:50 by zwaschwi         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:30:00 by zwaschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-char	*ft_strrchr(const char *str, int c)
+size_t	ft_strlen(const char *str);
+
+const char	*ft_strrchr(const char *str, int c)
 {
 	int	i;
 
-	i = 0;
-	while (*str)
+	i = (int)ft_strlen(str);
+	while (i >= 0)
 	{
-		str++;
-		i++;
-	}
-	while (i > 0)
-	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str--;
+		if (str[i] == (unsigned char)c)
+			return ((const char *)&str[i]);
 		i--;
 	}
 	return (NULL);
@@ -35,13 +32,14 @@ char	*ft_strrchr(const char *str, int c)
 #include <stdio.h>
 
 int main () {
-   const char str[] = "https://wwwtutorialspointcom";
-   const char ch = '.';
-   char *ret;
+   const char str[] = "bonjour";
+   const char ch = 's';
+   const char *ret;
 
    ret = ft_strrchr(str, ch);
 
    printf("String after |%c| is - |%s|\n", ch, ret);
    
    return(0);
-}*/
+}
+*/

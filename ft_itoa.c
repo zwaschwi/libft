@@ -5,90 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zwaschwi <zwaschwi@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:32:16 by zwaschwi          #+#    #+#             */
-/*   Updated: 2024/11/11 17:55:48 by zwaschwi         ###   ########.fr       */
+/*   Created: 2024/11/20 18:08:34 by zwaschwi          #+#    #+#             */
+/*   Updated: 2024/11/21 12:46:57 by zwaschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	ft_count_digits(int n)
+char	*ft_strdup(const char *src);
+
+static int	ft_get_digit_count(int n)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	if (n == -2147483648)
-		return (11);
+	count = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
+		count++;
 		n = -n;
-		i += 1;
 	}
-	while (n >= 1)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*write_positives(char *integer, int n, int i)
-{
 	while (n > 0)
 	{
-		integer[--i] = n % 10 + '0';
 		n = n / 10;
+		count++;
 	}
-	return (integer);
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*integer;
-	int		i;
+	char	*str;
+	int		len;
 
-	i = ft_count_digits(n);
-	integer = (char *)malloc((i + 1) * sizeof(char));
-	if (integer == NULL)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = ft_get_digit_count(n);
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
-	else if (n == -2147483648)
-	{
-		integer[--i] = '8';
-		n = n / 10;
-	}
-	integer[i] = '\0';
+	str[len] = '\0';
 	if (n < 0)
 	{
-		integer[0] = '-';
+		str[0] = '-';
 		n = -n;
 	}
-	if (n == 0)
-		integer[0] = '0';
-	write_positives(integer, n, i);
-	return (integer);
+	len--;
+	while (len >= 0 && str[len] != '-')
+	{
+		str[len] = (n % 10) + '0';
+		n /= 10;
+		len--;
+	}
+	return (str);
 }
-/*
-int main()
-{
-    int test_values[] = {0, -2147483648, -123, 123, 42, -9, 2147483647};
-    int num_tests = sizeof(test_values) / sizeof(test_values[0]);
-    
-    for (int i = 0; i < num_tests; i++)
-    {
-        int n = test_values[i];
-        char *result = ft_itoa(n);
-        
-        if (result != NULL)
-        {
-            printf("ft_itoa(%d) = %s\n", n, result);
-            free(result); // Free allocated memory
-        }
-        else
-        {
-            printf("ft_itoa(%d) = NULL (allocation failed)\n", n);
-        }
-    }
-    
-    return 0;
-}*/

@@ -6,7 +6,7 @@
 /*   By: zwaschwi <zwaschwi@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:23:05 by zwaschwi          #+#    #+#             */
-/*   Updated: 2024/11/13 17:44:50 by zwaschwi         ###   ########.fr       */
+/*   Updated: 2024/11/18 06:26:19 by zwaschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
-		return (NULL);
+		return ;
 	while (*s)
 	{
 		write (fd, s, 1);

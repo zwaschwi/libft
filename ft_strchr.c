@@ -6,7 +6,7 @@
 /*   By: zwaschwi <zwaschwi@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:21:51 by zwaschwi          #+#    #+#             */
-/*   Updated: 2024/11/06 18:34:47 by zwaschwi         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:48:06 by zwaschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	if (*s == (char)c)
 		return ((char *)s);
-	else 
+	else
 		return (NULL);
 }
-
 /*
 #include <string.h>
 #include <stdio.h>
